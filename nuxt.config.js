@@ -1,5 +1,8 @@
 export default {
   head: {
+    htmlAttrs: {
+      lang: 'es',
+    },
     title: 'rick-and-morty-eiteck-pt',
     meta: [
       { charset: 'utf-8' },
@@ -16,7 +19,11 @@ export default {
 
   components: true,
 
-  buildModules: ['@nuxtjs/eslint-module', '@nuxt/postcss8'],
+  buildModules: [
+    '@nuxtjs/eslint-module',
+    '@nuxt/postcss8',
+    '@nuxtjs/google-fonts',
+  ],
 
   modules: ['@nuxtjs/axios', '@nuxtjs/pwa'],
 
@@ -27,6 +34,7 @@ export default {
   googleFonts: {
     families: {
       'Open+Sans': [300, 400, 500, 600, 700, 800],
+      Poppins: [100, 200, 300, 400, 500, 600, 700, 800, 900],
     },
   },
 
