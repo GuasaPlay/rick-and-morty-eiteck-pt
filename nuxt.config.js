@@ -15,7 +15,7 @@ export default {
 
   css: ['@/assets/css/main.css'],
 
-  plugins: [],
+  plugins: [{ src: '~plugins/v-paginate', mode: 'client' }],
 
   components: true,
 
