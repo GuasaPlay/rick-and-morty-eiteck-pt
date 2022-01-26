@@ -105,7 +105,7 @@ export default {
 </script>
 <style lang="postcss" scoped>
 .banner-home {
-  background: url('~assets/img/banner-episodes-1.jpg');
+  background: url('~assets/img/banner-episodes.jpg');
   width: 100%;
   height: 400px;
   background-repeat: no-repeat;
