@@ -13,3 +13,25 @@ body {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
+.pagination {
+  @apply flex justify-center space-x-2 p-2 font-openSans;
+}
+.page-link,
+.prev-link,
+.next-link {
+  @apply flex h-9 w-9 items-center justify-center rounded-md bg-white font-bold text-slate-700 shadow-md transition-colors hover:bg-cyan-600 hover:text-white;
+  user-select: none;
+}
+
+.pagination > .next-link.disabled,
+.pagination > .prev-link.disabled {
+  @apply cursor-not-allowed bg-gray-300 hover:text-slate-700;
+}
+.pagination > .page-link.disabled {
+  @apply cursor-not-allowed bg-white text-slate-700;
+}
+
+.active-page {
+  @apply bg-cyan-600 text-white;
+}
