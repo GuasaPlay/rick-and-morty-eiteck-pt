@@ -35,7 +35,7 @@ El enfoque principal son los componentes que nos permite dividir las aplicacione
 
 ## Metodología
 
-Utilice SCRUM como metodologpia ya que es agil y flexible, de esta manera se trabajó en cada una de las iteraciones en las mismas que se mejorando cada vez mas la aplicación. Esto lo se puede comprobar en los commits del proyecto
+Utilice SCRUM como metodología ya que es agil y flexible, de esta manera se trabajó en cada una de las iteraciones en las mismas que se mejorando cada vez mas la aplicación. Esto lo se puede comprobar en los commits del proyecto
 
 ## Posibles mejoras
 
