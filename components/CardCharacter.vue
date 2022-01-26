@@ -21,13 +21,13 @@
         >
       </div>
       <div class="mt-2">
-        {{ character.species }}
+        {{ translateSpecies(character.species) }}
       </div>
       <div class="mt-2">
         <span
           class="rounded-md px-2 py-0.5 text-sm font-medium text-white"
           :class="getColorStatus(character.status)"
-          >{{ parseStatus(character.status) }}</span
+          >{{ translateStatus(character.status) }}</span
         >
       </div>
     </div>
@@ -43,7 +43,7 @@ export default {
     },
   },
   methods: {
-    parseStatus(data) {
+    translateStatus(data) {
       const status = {
         Alive: 'Vivo',
         Dead: 'Muerto',
@@ -58,6 +58,21 @@ export default {
         unknown: 'bg-gray-600',
       }
       return status[data]
+    },
+    translateSpecies(data) {
+      const species = {
+        Human: 'Humano',
+        Humanoid: 'Humanoide',
+        Alien: 'Extraterrestre',
+        unknown: 'Desconocido',
+        Animal: 'Animal',
+        Robot: 'Robot',
+        Cronenberg: 'Cronenberg',
+        Disease: 'Disease',
+        Poopybutthole: 'Poopybutthole',
+        'Mythological Creature': 'Criatura Mitológica',
+      }
+      return species[data]
     },
   },
 }
