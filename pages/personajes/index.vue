@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeroBannerCharacter>
-      <div class="relative text-gray-600">
+      <section class="relative text-gray-600">
         <input
           v-model="search"
           class="h-12 w-full rounded-lg bg-white px-5 pr-16 font-medium text-gray-700 transition-all duration-300 placeholder:text-base placeholder:font-medium focus:outline-none md:min-w-[500px]"
@@ -26,10 +26,10 @@
             />
           </svg>
         </button>
-      </div>
+      </section>
     </HeroBannerCharacter>
 
-    <div
+    <section
       class="container mx-auto mt-10 px-2 transition-all duration-300 sm:px-4"
     >
       <!-- Skeleton loader when fetching characters -->
@@ -74,7 +74,7 @@
           </template>
         </client-only>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 

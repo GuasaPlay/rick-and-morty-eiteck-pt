@@ -2,7 +2,7 @@
   <div
     class="w-full transform rounded-xl bg-white p-3 shadow-lg transition-all hover:scale-105 hover:shadow-cyan-300/30"
   >
-    <NuxtLink :to="`personaje/${character.id}`" class="">
+    <NuxtLink :to="`personajes/${character.id}`">
       <div class="aspect-square w-full rounded-lg bg-gray-100">
         <img
           class="h-full w-full rounded-xl object-cover"
