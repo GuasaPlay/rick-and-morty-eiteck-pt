@@ -1,68 +1,71 @@
-# rick-and-morty-eiteck-pt
+<h1 align="center">Rick and Morty EITECK</h1>
 
-## Build Setup
+En el siguente proyecto utilizo la API de [Rick and Morty](https://rickandmortyapi.com/) para crear una aplicación con el Framework [Nuxt.js](https://rickandmortyapi.com/) y [TailwindCSS](https://tailwindcss.com/) donde permite realizar consultas de personajes de la serie de TV.
+
+La razón por que utilice Nuxt.js en este proyecto es debido a que nos ayuda a solucionar muchas configuraciones la mas importante es el [SSR (Server Side Rendering)](https://lemoncode.net/lemoncode-blog/2018/5/13/server-side-rendering-i-conceptos) el mismo que nos aporta dos benefecios:
+
+- SEO (Search Engine Optimization): es decir que los buscadores de Google te encuentren e indexen tu contenido.
+- Aumentar la velocidad en la carga inicial de tu sitio: es decir que la primera vez que accedas a tu sitio lo haga más rápido.
+
+Recordemos que Nuxt.js es un framework que esta basado en [Vue.js](https://vuejs.org/)
+
+Por otra parte para dar estilo a la aplicación utilice TailwindCSS es mismo que es un framework CSS que permite un desarrollo ágil basado en clases de utilidad que se pueden aplicar con facilidad en el código HTML y unos flujos de desarrollo que permiten optimizar mucho el peso del código CSS.
+
+## Caracteristicas
+
+- Utilice `grid` de CSS para mostrar las tarjetas de cada unos de los personajes.
+- Agregue una barra de busqueda realizar consultas de los personajes por el nombre.
+- La paginación esta presente al final de la página.
+- Agregue un skeleton loader mientras se realiza la consulta de los personajes a la API.
+- La `especie`, `estado` y `género` estan traducidos al español.
+- Para el detalle del personaje cree una tarjeta moderna donde muestra la información detallada del mismo
+- Para mostrar el listado de los episodios donde el personaje aparece, utilice el sistema `Mansory Grid` como lo relaliza Pinterest.
+- Toda la aplicación es responsive y se adapta para dispositivos moviles.
+- En la aplicación esta implementado la tecnología `PWA` de esta manera puede instalar la aplicación en el celular o la computadora.
+
+![Presentación](https://github.com/GuasaPlay/rick-and-morty-eiteck-pt/blob/main/assets/img/Hnet-image.gif?raw=true)
+
+## Arquitectura
+
+Como en este proyecto utilice Vue.js entonces, este implementa lo que se conoce como arquitectura MVVM (Model-View-ViewModel), el mismo que abstrae el estado y el comportamiento de la vista, lo que nos permite separar la interfaz de usuario de la vista de la lógica empresarial.
+
+## Enfoque
+
+El enfoque principal son los componentes que nos permite dividir las aplicaciones en bloques con funcionalidades independientes que se le denomina componentes. Esos bloques podrían ser una cabecera, un menú, un listado, etc.
+
+## Metodología
+
+Utilice SCRUM como metodologpia ya que es agil y flexible, de esta manera se trabajó en cada una de las iteraciones en las mismas que se mejorando cada vez mas la aplicación. Esto lo se puede comprobar en los commits del proyecto
+
+## Posibles mejoras
+
+Hay muchas mejoras que se puede realizar en la aplicación, las mismas que no pude realizar por que no me alcanzó el tiempo. En el siguiente listado menciono algunas de estas mejoras:
+
+- En la página de personajes se podría agregar un botón para que se pueda realizar un filtrado por `especie`, `estado`, `tipo` o `genero`.
+- En la pagina del detalle del personaje faltaría agregar un componente de carga mientras se realiza la consulta a la API.
+- Mejorar la carga de las imagenes con `lazy-load`
+
+## ¿Cómo probar la aplicación?
+
+Actualmente la aplicación esta deplegada en Heroku, puede ingresar desde el siguente enlace: [https://rick-and-morty-eiteck-pt.herokuapp.com/personajes/4](https://rick-and-morty-eiteck-pt.herokuapp.com)
+
+**Nota:** Cuando abra el enlace pueda que tarde un poco en cargar, esto debido a que Heroku duerme el servidor para ahorrar recursos ya que esta alojado en versión gratuita.
+
+## Como ejecutar el proyecto en local
+
+Primero clonamos el repositorio y luego ejecutamos los siguentes comando con `npm`:
 
 ```bash
-# install dependencies
+# Instalar las dependencias
 $ npm install
 
-# serve with hot reload at localhost:3000
+# Ejecutar el proyecto en modo de desarrollo en localhost:3000
 $ npm run dev
 
-# build for production and launch server
+# Construir los directorio para producción y lanzar el servidor.
 $ npm run build
 $ npm run start
 
-# generate static project
-$ npm run generate
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
-
-## Special Directories
-
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
-
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+Para obtener una explicación detallada sobre cómo funcionan Nuxt.js, consulte la [documentación](https://nuxtjs.org).
