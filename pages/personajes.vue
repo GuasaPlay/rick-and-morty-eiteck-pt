@@ -6,10 +6,12 @@
       >
         <div class="relative text-gray-600">
           <input
+            v-model="search"
             class="h-12 w-full rounded-lg bg-white px-5 pr-16 font-medium text-gray-700 transition-all duration-300 placeholder:text-base placeholder:font-medium focus:outline-none md:min-w-[500px]"
             type="text"
             name="search"
-            placeholder="Buscar un personaje"
+            placeholder="Busca un personaje por el nombre"
+            @input="searchDebounce"
           />
           <button class="absolute right-0 top-0 mt-3 mr-4">
             <svg
@@ -31,104 +33,179 @@
       </div>
     </div>
 
-    <p v-if="$fetchState.pending">Fetching posts...</p>
-    <p v-else-if="$fetchState.error">Error while fetching posts</p>
     <div
-      v-else
       class="container mx-auto mt-10 px-2 transition-all duration-300 sm:px-4"
     >
       <div
+        v-if="$fetchState.pending"
+        :key="1"
         class="grid grid-cols-2 gap-2 sm:grid-cols-2 sm:gap-6 md:grid-cols-3 lg:grid-cols-4"
       >
+        <!-- SkeletonCard -->
         <div
-          v-for="result in results"
-          :key="result.id"
-          class="w-full transform rounded-xl bg-white p-3 shadow-lg transition-all hover:scale-105 hover:shadow-cyan-300/30"
+          v-for="number in 8"
+          :key="number"
+          class="w-full rounded-xl bg-white p-3 shadow-lg"
         >
-          <NuxtLink :to="`personaje/${result.id}`" class="">
-            <div class="aspect-auto w-full rounded-lg bg-gray-100">
-              <img
-                class="h-full w-full rounded-xl object-cover"
-                :src="result.image"
-                :alt="result.name"
-              />
-            </div>
-          </NuxtLink>
+          <div
+            class="aspect-square w-full animate-pulse rounded-lg bg-gray-100"
+          ></div>
+
           <div class="mt-3">
-            <div>
-              <NuxtLink
-                :to="`personajes/${result.id}`"
-                class="font-poppins text-lg font-bold text-slate-700 transition-colors line-clamp-1 hover:text-cyan-500"
-                :title="result.name"
-                >{{ result.name }}</NuxtLink
+            <div class="h-7 w-full animate-pulse rounded bg-gray-300"></div>
+
+            <div class="mt-1.5">
+              <span class="animate-pulse rounded bg-gray-300 text-gray-300"
+                >Cronenberg</span
               >
-            </div>
-            <div class="mt-0">
-              {{ result.species }}
             </div>
             <div class="mt-2">
               <span
-                class="rounded-md px-2 py-0.5 text-sm font-medium text-white"
-                :class="getColorStatus(result.status)"
-                >{{ parseStatus(result.status) }}</span
+                class="animate-pulse rounded-md bg-gray-300 px-2 py-0.5 text-sm font-medium text-gray-300"
+                >Dead</span
               >
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex asperiores
-      minima animi. Incidunt officia amet hic, labore cupiditate perferendis
-      aliquid perspiciatis, minima temporibus quae ut quibusdam. Expedita
-      laudantium ipsum ipsa. Hic nam, placeat corrupti provident, dicta illum
-      nobis culpa voluptatibus, quibusdam iure eius eos consectetur dolorem.
-      Quaerat repellat necessitatibus nobis nam quod id temporibus quam ipsam,
-      possimus, quibusdam, error dolores? Velit voluptatibus accusamus impedit
-      qui ducimus doloremque animi est perferendis a veniam! Voluptatem
-      necessitatibus harum labore obcaecati, consequatur autem reprehenderit
-      veritatis sint, temporibus asperiores omnis minima nam! Dolorem, saepe
-      vitae. Veniam illo, ullam porro officiis nostrum aut debitis sapiente
-      libero, impedit unde mollitia magni aperiam, molestias enim cupiditate ab.
-      Facilis neque numquam officia quisquam? Enim accusamus possimus ducimus
-      tempore aut. Consequatur eos quod, minima beatae totam rerum impedit velit
-      mollitia cumque reiciendis! Harum iste ipsum similique aspernatur
-      dignissimos vel sint, ratione obcaecati voluptatum veniam culpa? Tenetur
-      ea tempora asperiores nisi. Nesciunt voluptate in ad ut est sequi
-      molestias minima natus reprehenderit quibusdam ea quasi labore, eius aut
-      facilis? A asperiores adipisci deleniti necessitatibus optio! Eum vitae
-      commodi non accusamus dolorum? Inventore voluptates voluptatum eos
-      molestias possimus quod nesciunt ipsam quidem facilis, totam debitis nihil
-      cum, eius quibusdam reiciendis voluptatibus corrupti ullam voluptate sunt
-      deserunt eligendi optio incidunt natus velit! Totam. Soluta facilis
-      adipisci eius aperiam fugit nihil itaque? Sunt facilis praesentium ad
-      dignissimos error mollitia at quaerat reiciendis quo, quod doloremque
-      temporibus! Reprehenderit ullam nostrum obcaecati, corrupti veniam
-      corporis placeat. Maiores ab quo a impedit vitae laborum asperiores atque
-      corrupti magni corporis, nesciunt itaque reprehenderit debitis, natus
-      accusantium. Dolorem blanditiis esse amet nostrum fugit fugiat officia
-      assumenda cupiditate sapiente beatae! Numquam corrupti sunt ratione maxime
-      provident molestiae inventore et eos quibusdam, vel consequuntur soluta
-      aut deleniti eaque temporibus cum minus a officiis omnis fugit nisi quae!
-      Recusandae quidem quam vitae!
+      <div v-else-if="$fetchState.error" :key="2">
+        <div
+          class="flex flex-col items-center justify-center sm:flex-row sm:justify-center"
+        >
+          <div class="order-2 h-80 w-80 sm:order-1 sm:h-80 sm:w-80">
+            <img
+              src="@/assets/img/not-result.png"
+              alt="Sin resultados"
+              class="aspect-auto h-full w-full object-cover"
+            />
+          </div>
+          <div
+            class="order-1 p-3 font-poppins text-xl font-bold text-slate-700 sm:order-2 sm:text-3xl"
+          >
+            No se encontraron resultados
+          </div>
+        </div>
+      </div>
+      <div v-else :key="3">
+        <div
+          class="grid grid-cols-2 gap-2 sm:grid-cols-2 sm:gap-6 md:grid-cols-3 lg:grid-cols-4"
+        >
+          <div
+            v-for="character in characters"
+            :key="character.id"
+            class="w-full transform rounded-xl bg-white p-3 shadow-lg transition-all hover:scale-105 hover:shadow-cyan-300/30"
+          >
+            <NuxtLink :to="`personaje/${character.id}`" class="">
+              <div class="aspect-square w-full rounded-lg bg-gray-100">
+                <img
+                  class="h-full w-full rounded-xl object-cover"
+                  :src="character.image"
+                  :alt="character.name"
+                />
+              </div>
+            </NuxtLink>
+            <div class="mt-3">
+              <div>
+                <NuxtLink
+                  :to="`personajes/${character.id}`"
+                  class="font-poppins text-lg font-bold text-slate-700 transition-colors line-clamp-1 hover:text-cyan-500"
+                  :title="character.name"
+                  >{{ character.name }}</NuxtLink
+                >
+              </div>
+              <div class="mt-2">
+                {{ character.species }}
+              </div>
+              <div class="mt-2">
+                <span
+                  class="rounded-md px-2 py-0.5 text-sm font-medium text-white"
+                  :class="getColorStatus(character.status)"
+                  >{{ parseStatus(character.status) }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="!$fetchState.error" class="my-10">
+        <client-only>
+          <paginate
+            v-model="parseCurrentPage"
+            :page-count="totalPages"
+            :click-handler="functionName"
+            prev-text="<"
+            next-text=">"
+            container-class="pagination"
+            page-link-class="page-link"
+            active-class="active-page"
+            prev-link-class="prev-link"
+            next-link-class="next-link"
+            no-li-surround
+          >
+          </paginate>
+
+          <template #placeholder>
+            <div class="text-center font-poppins text-lg font-semibold">
+              Cargando...
+            </div>
+          </template>
+        </client-only>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import debounce from 'lodash/debounce'
 export default {
   layout: 'default',
   data() {
     return {
-      results: {},
+      characters: [],
+      currentPage: this.$route.query.page || 1,
+      totalPages: 0,
+      info: {},
+      search: this.$route.query.search || '',
     }
   },
   async fetch() {
-    const data = await this.$axios.$get('/character?page=1')
-    console.log(data)
-    this.results = data.results
+    const data = await this.$axios.$get(
+      `/character?page=${this.currentPage}&name=${this.search}`
+    )
+    console.log(data.info)
+    this.characters = data.results
+    this.info = data.info
+    this.totalPages = data.info.pages
   },
+  computed: {
+    parseCurrentPage: {
+      get() {
+        return parseInt(this.currentPage)
+      },
+      set(val) {},
+    },
+  },
+
   methods: {
+    searchDebounce: debounce(function () {
+      this.currentPage = 1
+      this.$fetch()
+      if (this.search.length === 0) {
+        this.$router.push(`/personajes`)
+      } else {
+        this.$router.push(`/personajes?search=${this.search}`)
+      }
+    }, 300),
+    functionName(page) {
+      this.currentPage = page
+      this.$fetch()
+      if (this.search.length === 0) {
+        this.$router.push(`/personajes?page=${page}`)
+      } else {
+        this.$router.push(`/personajes?page=${page}&search=${this.search}`)
+      }
+    },
     parseStatus(data) {
       const status = {
         Alive: 'Vivo',
@@ -148,14 +225,32 @@ export default {
   },
 }
 </script>
-<style lang="postcss" scoped>
+<style lang="postcss">
 .banner-home {
   background: url('~assets/img/banner-home.png');
-  /* width: 100%;
-  height: 400px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover; */
+
   @apply h-[350px] w-full bg-slate-800 bg-cover bg-center bg-no-repeat transition-all sm:h-[400px];
+}
+
+.pagination {
+  @apply flex justify-center space-x-2 p-2 font-openSans;
+}
+.page-link,
+.prev-link,
+.next-link {
+  @apply flex h-9 w-9 items-center justify-center rounded-md bg-white font-bold text-slate-700 shadow-md transition-colors hover:bg-cyan-600 hover:text-white;
+  user-select: none;
+}
+
+.pagination > .next-link.disabled,
+.pagination > .prev-link.disabled {
+  @apply cursor-not-allowed bg-gray-300 hover:text-slate-700;
+}
+.pagination > .page-link.disabled {
+  @apply cursor-not-allowed bg-white text-slate-700;
+}
+
+.active-page {
+  @apply bg-cyan-600 text-white;
 }
 </style>

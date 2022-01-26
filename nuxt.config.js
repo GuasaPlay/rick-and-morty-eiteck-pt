@@ -43,6 +43,9 @@ export default {
       lang: 'es',
     },
   },
+  eslint: {
+    cache: false,
+  },
 
   build: {
     postcss: {
