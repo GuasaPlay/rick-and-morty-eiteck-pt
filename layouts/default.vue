@@ -21,8 +21,7 @@
           <NuxtLink
             to="/personajes"
             class="rounded-lg px-2.5 py-2 font-bold text-slate-700 transition-colors hover:bg-cyan-100 hover:text-cyan-500"
-            exact
-            exact-active-class="bg-cyan-100 !text-cyan-500"
+            active-class="bg-cyan-100 !text-cyan-500"
             >Personajes</NuxtLink
           >
           <!-- <NuxtLink

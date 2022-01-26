@@ -7,7 +7,7 @@
           class="h-12 w-full rounded-lg bg-white px-5 pr-16 font-medium text-gray-700 transition-all duration-300 placeholder:text-base placeholder:font-medium focus:outline-none md:min-w-[500px]"
           type="text"
           name="search"
-          placeholder="Busca un personaje por el nombre"
+          placeholder="Busca un personaje"
           @input="searchDebounce"
         />
         <button class="absolute right-0 top-0 mt-3 mr-4">
