@@ -3,7 +3,7 @@ export default {
     htmlAttrs: {
       lang: 'es',
     },
-    title: 'rick-and-morty-eiteck-pt',
+    title: 'Rick and Morty EITECK',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -41,6 +41,8 @@ export default {
   pwa: {
     manifest: {
       lang: 'es',
+      name: 'Rick and Morty EITECK',
+      short_name: 'RM-EITECK',
     },
   },
   eslint: {
