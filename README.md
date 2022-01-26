@@ -44,6 +44,7 @@ Hay muchas mejoras que se puede realizar en la aplicación, las mismas que no pu
 - En la página de personajes se podría agregar un botón para que se pueda realizar un filtrado por `especie`, `estado`, `tipo` o `genero`.
 - En la pagina del detalle del personaje faltaría agregar un componente de carga mientras se realiza la consulta a la API.
 - Mejorar la carga de las imagenes con `lazy-load`
+- La pagina del detalle del personaje se puede componetizar, pero por el tiempo ya no logre abstraer en componentes.
 
 ## ¿Cómo probar la aplicación?
 
