@@ -48,7 +48,7 @@ Hay muchas mejoras que se puede realizar en la aplicación, las mismas que no pu
 
 ## ¿Cómo probar la aplicación?
 
-Actualmente la aplicación esta deplegada en Heroku, puede ingresar desde el siguente enlace: [https://rick-and-morty-eiteck-pt.herokuapp.com/personajes/4](https://rick-and-morty-eiteck-pt.herokuapp.com)
+Actualmente la aplicación esta deplegada en Heroku, puede ingresar desde el siguente enlace: [https://rick-and-morty-eiteck-pt.herokuapp.com](https://rick-and-morty-eiteck-pt.herokuapp.com)
 
 **Nota:** Cuando abra el enlace pueda que tarde un poco en cargar, esto debido a que Heroku duerme el servidor para ahorrar recursos ya que esta alojado en versión gratuita.
 
